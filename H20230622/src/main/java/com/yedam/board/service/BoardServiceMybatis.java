@@ -2,33 +2,51 @@ package com.yedam.board.service;
 
 import java.util.List;
 
-import com.yedam.board.vo.BoardVO;
+import org.apache.ibatis.session.SqlSession;
 
-public class BoardServiceMybatis implements BoardService{
+import com.yedam.board.persistence.BoardMapper;
+import com.yedam.board.vo.BoardVO;
+import com.yedam.common.DataSource;
+
+public class BoardServiceMybatis implements BoardService {
+	// SqlSessionFactory 객체
+	SqlSession session = DataSource.getInstance().openSession(true);
+	BoardMapper mapper = session.getMapper(BoardMapper.class);
+	
+	@Override
+	public List<BoardVO> list(int page) {
+//		return session.selectList("com.yedam.board/persistence.BoardMapper.boardList"); // mapper.id;
+//		mapper.id
+		return mapper.boardList(page);
+	}
 
 	@Override
 	public boolean addBoard(BoardVO vo) {
-		return false;
+		return mapper.insertBoard(vo) ==1;
 	}
 
 	@Override
 	public BoardVO getBoard(long brdNo) {
-		return null;
+		BoardVO vo = mapper.selectBoard(brdNo);
+		mapper.updateCnt(brdNo);
+		return vo;
 	}
 
 	@Override
 	public boolean editBoard(BoardVO vo) {
-		return false;
+		return mapper.updateBoard(vo) == 1;
 	}
 
 	@Override
 	public boolean delBoard(long brdNo) {
-		return false;
+		return mapper.deleteCnt(brdNo) == 1;
 	}
 
+	
+
 	@Override
-	public List<BoardVO> list() {
-		return null;
+	public int totalCnt() {
+		return mapper.totalCnt();
 	}
 
 }

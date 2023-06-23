@@ -14,6 +14,7 @@ import com.yedam.board.control.BoardFormControl;
 import com.yedam.board.control.BoardListControl;
 import com.yedam.board.control.BoardModifyControl;
 import com.yedam.board.control.BoardModifyFormControl;
+import com.yedam.board.control.BoardRemoveControl;
 import com.yedam.board.control.BoardSearchControl;
 import com.yedam.common.Controller;
 
@@ -38,6 +39,7 @@ public class FrontController extends HttpServlet{
 		menu.put("/getBoard.do", new BoardSearchControl());
 		menu.put("/modifyForm.do", new BoardModifyFormControl());
 		menu.put("/boardModify.do", new BoardModifyControl());
+		menu.put("/boardRemove.do", new BoardRemoveControl());
 		
 		menu.put("/member.do", new MemberControl());
 	}

@@ -8,28 +8,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.board.service.BoardService;
 import com.yedam.board.service.BoardServiceMybatis;
-import com.yedam.board.vo.BoardVO;
 import com.yedam.common.Controller;
 
-public class BoardModifyControl implements Controller {
+public class BoardRemoveControl implements Controller {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//DB 수정 > 목록
-		
-		String no =req.getParameter("no");
-		String title =req.getParameter("title");
-		String content =req.getParameter("content");
-		
-		BoardVO vo = new BoardVO();
-		vo.setBrdNo(Long.parseLong(no));
-		vo.setBrdTitle(title);
-		vo.setBrdContent(content);
+		String no = req.getParameter("bno");
 		
 		BoardService service = new BoardServiceMybatis();
-		service.editBoard(vo);
+		service.delBoard(Long.parseLong(no));
 		
-		resp.sendRedirect("boardList.do"); 
+		resp.sendRedirect("boardList.do");
 	}
 
 }

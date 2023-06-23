@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+    <jsp:include page="header.jsp"></jsp:include>
 
-<head>
-    <meta charset="UTF-8">
-    <title>boardForm.jsp</title>
-</head>
-
-<body>
 	<%
 		String msg = (String)request.getAttribute("errorMsg");
 	%>
@@ -42,6 +35,5 @@
             </tr>
         </table>
     </form>
-</body>
-
-</html>
+<br>
+ <jsp:include page="footer.jsp"></jsp:include>

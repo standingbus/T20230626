@@ -1,15 +1,7 @@
 <%@page import="com.yedam.board.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-
-<head>
-	<meta charset="UTF-8">
-	<title>boardOne.jsp</title>
-</head>
-
-<body>
+ <jsp:include page="header.jsp"></jsp:include>
 	<h3>상세화면(boardOne.jsp)</h3>
 	<%
   	  BoardVO vo = (BoardVO) request.getAttribute("board");
@@ -22,9 +14,9 @@
 	<%
   	} else{
     %>
-    <form action = "modifyForm.do" method="post">
+    <form name="myFrm" action = "modifyForm.do" method="post">
     	<input type = "hidden" name = "bno" value="<%=vo.getBrdNo() %>">
-	  <table border="1">
+	  <table border="1" class="table">
 		<tr>
 			<th>제목</th>
 			<td><input type="text" name="title" value="<%=vo.getBrdTitle() %>"></td>
@@ -48,6 +40,15 @@
   	  }
     %>
     <a href="boardList.do">목록으로 이동</a>
-</body>
-
-</html>
+    
+    <script>
+    	console.log(this);
+    	document.querySelector('form[name="myFrm"] button[type="button"]').addEventListener('click',function(e){
+    		console.log(e);
+    		document.forms.myFrm.action = "boardRemove.do";
+    		document.forms.myFrm.submit();
+    		
+    		
+    	});
+    </script>
+ <jsp:include page="footer.jsp"></jsp:include>
