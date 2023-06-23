@@ -10,6 +10,7 @@
 </head>
 
 <body>
+	<h3>상세화면(boardOne.jsp)</h3>
 	<%
   	  BoardVO vo = (BoardVO) request.getAttribute("board");
     %>
@@ -21,7 +22,9 @@
 	<%
   	} else{
     %>
-	<table border="1">
+    <form action = "modifyForm.do" method="post">
+    	<input type = "hidden" name = "bno" value="<%=vo.getBrdNo() %>">
+	  <table border="1">
 		<tr>
 			<th>제목</th>
 			<td><input type="text" name="title" value="<%=vo.getBrdTitle() %>"></td>
@@ -34,7 +37,13 @@
 			<th>내용</th>
 			<td><textarea name="content" cols="30" rows="10"><%=vo.getBrdContent() %></textarea></td>
 		</tr>
-	</table>
+		<tr>
+			<td colspan="2" align="center">
+				<button type = "submit">수정</button>
+				<button type = "button">삭제</button>
+		</tr>
+	  </table>
+	</form>
 	<%
   	  }
     %>
