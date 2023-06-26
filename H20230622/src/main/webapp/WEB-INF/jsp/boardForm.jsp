@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <jsp:include page="header.jsp"></jsp:include>
-
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
 	<%
 		String msg = (String)request.getAttribute("errorMsg");
 		String logId = (String) session.getAttribute("loginId");
 	%>
-	<%
-		if(msg != null){			
-	%>
+	
+	
+	
+	<c:if test="${erroMsg eq null }">
 		<p>메세지: <b><%=msg %></b></p>
-	<% 
-		}
-	%>
+	</c:if>
+	
     <h3>게시글 등록</h3>
     <form action="addBoard.do" method="post">
         <table border="1" class = "table">
@@ -23,17 +23,19 @@
             <tr>
                 <th>작성자</th>
                 <td>
-                <%
-                if (logId ==null){
-                %>
-                <input type="text" name="writer" readonly>
-                <%
-                } else {
-                %>
+                
+                <c:choose>
+                <c:when test="${loginId eq null}">
+                	<input type="text" name="writer" readonly>
+                </c:when>
+               
+                
+                <c:otherwise>
                 <input type="text" name="writer" value="<%=logId %>" readonly>
-                <%
-                }
-                %>
+                </c:otherwise>
+                
+                </c:choose>
+                
                 </td>
             </tr>
             <tr>
@@ -42,19 +44,17 @@
             </tr>
             <tr>
                 <td colspan="2" align = "center">
-                <%
-                if (logId ==null){
-                %>
-                    <input type="submit" value="저장" disabled>
-                <%
-                } else {
-                %>
-                    <input type="submit" value="저장">
-                <%
-                }
-                %>
-                    <input type="reset" value="초기화">
+                <c:choose>
+                	<c:when test="${loginId eq null }">
+                	 <input type="submit" value="저장" disabled>
+                </c:when>
+                <c:otherwise>
                
+                    <input type="submit" value="저장">
+               </c:otherwise>
+               </c:choose>
+               
+                    <input type="reset" value="초기화">
                 </td>
             </tr>
         </table>
