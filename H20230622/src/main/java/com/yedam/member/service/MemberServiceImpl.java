@@ -30,6 +30,11 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.select(vo);
 	}
 
+	@Override
+	public boolean ModifyMember(MemberVO member) {
+		return mapper.update(member) == 1;
+	}
+
 	
 
 }

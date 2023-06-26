@@ -19,11 +19,11 @@
 		</tr>
 		<tr>
 			<th>전화번호</th>
-				<td><input name = "phone" value="<%=member.getUserPhone() %>"></td>
+			<td><input name = "phone" value="<%=member.getUserPhone() %>"></td>
 		</tr>
 		<tr>
 			<th>주소</th>
-				<td><input name = "addr" value="<%=member.getUserAddr() %>"></td>
+			<td><input name = "addr" value="<%=member.getUserAddr() %>"></td>
 		</tr>
 		<tr>
 			<td colspan = "2" align="center">

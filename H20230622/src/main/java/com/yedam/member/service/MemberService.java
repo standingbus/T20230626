@@ -6,5 +6,5 @@ public interface MemberService {
 	public MemberVO login(String id, String pw);
 	public boolean addMember(MemberVO member);
 	public MemberVO getMember(String id);
-	
+	public boolean ModifyMember(MemberVO member);
 }

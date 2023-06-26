@@ -25,8 +25,8 @@ public class MemberInfoControl implements Controller {
 		MemberService service = new MemberServiceImpl();
 //		service.getMember(id);
 		MemberVO member = service.getMember(id);
-		member.setUserAddr("대구 중구");
-		member.setUserPhone("010-2923-9494");
+//		member.setUserAddr("대구 중구");
+//		member.setUserPhone("010-2923-9494");
 //		member.setUserId("user99");
 //		member.setUserName("서지원");
 //		member.setUserBirth(new Date());
