@@ -14,7 +14,7 @@
 	<form action="boardModify.do" method="post">
 		<table border="1">
 			<tr>
-				<th>글번호</th><td><input readonly name="no" value="${board.brdNo }"></td>
+				<th>글번호</th><td><input readonly name="bno" value="${board.brdNo }"></td>
 				<th>조회수</th><td>${board.clickCnt }</td>
 			</tr>
 			<tr>
