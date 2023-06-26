@@ -5,6 +5,7 @@
 	<h3>상세화면(boardOne.jsp)</h3>
 	<%
   	  BoardVO vo = (BoardVO) request.getAttribute("board");
+	  String logId = (String) session.getAttribute("loginId");
     %>
 
 	<%
@@ -31,8 +32,13 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
+			<% if(logId.equals(vo.getBrdWriter())){ %>
 				<button type = "submit">수정</button>
 				<button type = "button">삭제</button>
+				<%} else { %>
+				<button type = "submit" disabled>수정</button>
+				<button type = "button" disabled>삭제</button>
+				<%} %>
 		</tr>
 	  </table>
 	</form>

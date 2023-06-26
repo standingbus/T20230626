@@ -4,6 +4,7 @@
 
 	<%
 		String msg = (String)request.getAttribute("errorMsg");
+		String logId = (String) session.getAttribute("loginId");
 	%>
 	<%
 		if(msg != null){			
@@ -14,23 +15,46 @@
 	%>
     <h3>게시글 등록</h3>
     <form action="addBoard.do" method="post">
-        <table border="1">
+        <table border="1" class = "table">
             <tr>
                 <th>제목</th>
                 <td><input type="text" name="title"></td>
             </tr>
             <tr>
                 <th>작성자</th>
-                <td><input type="text" name="writer"></td>
+                <td>
+                <%
+                if (logId ==null){
+                %>
+                <input type="text" name="writer" readonly>
+                <%
+                } else {
+                %>
+                <input type="text" name="writer" value="<%=logId %>" readonly>
+                <%
+                }
+                %>
+                </td>
             </tr>
             <tr>
                 <th>내용</th>
                 <td><textarea name="content" cols="30" rows="10"></textarea></td>
             </tr>
             <tr>
-                <td colspan="2">
+                <td colspan="2" align = "center">
+                <%
+                if (logId ==null){
+                %>
+                    <input type="submit" value="저장" disabled>
+                <%
+                } else {
+                %>
                     <input type="submit" value="저장">
+                <%
+                }
+                %>
                     <input type="reset" value="초기화">
+               
                 </td>
             </tr>
         </table>
